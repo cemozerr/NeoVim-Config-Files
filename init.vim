@@ -22,6 +22,10 @@ tnoremap <ESC> <C-\><C-n>
 noremap :vsp :vsp:enew! 
 noremap :sp :sp:enew! 
 
+" get rid of unnnecessary strokes
+nnoremap ; :
+nnoremap Q @q
+
 highlight clear LineNr
 highlight LineNr ctermfg=yellow ctermbg=black
 
