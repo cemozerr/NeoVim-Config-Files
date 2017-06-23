@@ -10,13 +10,20 @@ set splitright
 
 xnoremap p pgvy
 
+" Map the leader key to SPACE
+let mapleader="\<SPACE>"
+
 highlight TermCursor ctermfg=blue guifg=blue
 
 " Terminal settings
 tnoremap <ESC> <C-\><C-n>
 
+" vsp,sp opens new buffer
+noremap :vsp :vsp:enew! 
+noremap :sp :sp:enew! 
+
 highlight clear LineNr
-highlight LineNr ctermfg=green ctermbg=black
+highlight LineNr ctermfg=yellow ctermbg=black
 
 " Specify a directory for plugins
 call plug#begin('~/.local/share/nvim/plugged')
@@ -59,6 +66,8 @@ call plug#end()
 
 " Window navigation function
 " Make ctrl-h/j/k/l move between windows and auto-insert in terminals
+autocmd BufLeave term://* stopinsert
+autocmd BufWinEnter,WinEnter term://* startinsert
 func! s:mapMoveToWindowInDirection(direction)
     func! s:maybeInsertMode(direction)
         stopinsert
@@ -78,3 +87,19 @@ endfunc
 for dir in ["h", "j", "l", "k"]
     call s:mapMoveToWindowInDirection(dir)
 endfor
+
+
+" Quickly switch between relative and normal numbering function
+" Relative numbering
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set rnu
+  endif
+endfunc
+
+" Toggle between normal and relative numbering.
+nnoremap <leader>r :call NumberToggle()<cr>
+
