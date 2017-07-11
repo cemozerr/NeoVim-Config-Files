@@ -1,10 +1,10 @@
 set number                " Show linenumbers
 syntax on                 " Syntax highlighting
 
+set mouse=a
 set expandtab
-set softtabstop=2
-set shiftwidth=2
-
+set softtabstop=4
+set shiftwidth=4 
 set splitbelow
 set splitright
 
@@ -27,7 +27,7 @@ nnoremap ; :
 nnoremap Q @q
 
 highlight clear LineNr
-highlight LineNr ctermfg=yellow ctermbg=black
+highlight LineNr ctermfg=grey ctermbg=black
 
 " Specify a directory for plugins
 call plug#begin('~/.local/share/nvim/plugged')
